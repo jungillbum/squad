@@ -62,12 +62,38 @@
         window.requestAnimationFrame(loop);
     }
 
+		var status = "std"
+		var count = 0
+
     async function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
+
+				if(prediction[0].probability.toFixed(2) > 0.9) {
+					if(status == "sqd") {
+						count++
+						var audio = new Audio( count%10 + '.m4a');
+						audio.play();
+					}
+					status = "std"
+				} else if(prediction[1].probability.toFixed(2) >0.9) {
+					status = "sqd"
+				} else if(prediction[2].probability.toFixed(2) > 0.9) {
+					if(status == "sqd" || status =="std" || status =="err2") {
+						var audio = new Audio( 111 + '.m4a');
+						audio.play();
+					}
+					status = "err1"
+				} else if(prediction[3].probability.toFixed(2) > 0.9) {
+					if(status == "sqd" || status =="std" || status =="err1") {
+						var audio = new Audio( 222 + '.m4a');
+						audio.play();
+					}
+					status = "err2"
+				}
 
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
