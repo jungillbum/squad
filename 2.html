@@ -79,15 +79,15 @@
 						audio.play();
 					}
 					status = "std"
-				} else if(prediction[1].probability.toFixed(2) >0.97) {
+				} else if(prediction[1].probability.toFixed(2) >0.99) {
 					status = "sqd"
-				} else if(prediction[2].probability.toFixed(2) > 0.8) {
+				} else if(prediction[2].probability.toFixed(2) > 0.95) {
 					if(status =="std") {
 						var audio = new Audio( 111 + '.m4a');
 						audio.play();
 					}
 					status = "err1"
-				} else if(prediction[3].probability.toFixed(2) > 0.95) {
+				} else if(prediction[3].probability.toFixed(2) > 0.99) {
 					if(status =="std") {
 						var audio = new Audio( 222 + '.m4a');
 						audio.play();
@@ -118,10 +118,6 @@
         }
     }
 </script>
-
-
-
-
 
 
 </body>
