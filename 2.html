@@ -72,23 +72,23 @@
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
 
-				if(prediction[0].probability.toFixed(2) > 0.9) {
+				if(prediction[0].probability.toFixed(2) > 0.97) {
 					if(status == "sqd") {
 						count++
 						var audio = new Audio( count%10 + '.m4a');
 						audio.play();
 					}
 					status = "std"
-				} else if(prediction[1].probability.toFixed(2) >0.9) {
+				} else if(prediction[1].probability.toFixed(2) >0.97) {
 					status = "sqd"
-				} else if(prediction[2].probability.toFixed(2) > 0.9) {
-					if(status == "sqd" || status =="std") {
+				} else if(prediction[2].probability.toFixed(2) > 0.8) {
+					if(status =="std") {
 						var audio = new Audio( 111 + '.m4a');
 						audio.play();
 					}
 					status = "err1"
-				} else if(prediction[3].probability.toFixed(2) > 0.9) {
-					if(status == "sqd" || status =="std") {
+				} else if(prediction[3].probability.toFixed(2) > 0.95) {
+					if(status =="std") {
 						var audio = new Audio( 222 + '.m4a');
 						audio.play();
 					}
