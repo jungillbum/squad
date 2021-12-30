@@ -87,7 +87,7 @@
 						audio.play();
 					}
 					status = "err1"
-				} else if(prediction[3].probability.toFixed(2) > 0.99) {
+				} else if(prediction[3].probability.toFixed(2) == 1.00) {
 					if(status =="std") {
 						var audio = new Audio( 222 + '.m4a');
 						audio.play();
