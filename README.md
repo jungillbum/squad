@@ -1,2 +1,2 @@
-# squad
-squad_trainer
+# squat
+squat_trainer
